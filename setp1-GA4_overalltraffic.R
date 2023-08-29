@@ -1,4 +1,4 @@
-setwd("C:/Users/zishan.sayyed/OneDrive - Interpublic/Documents/GitLab_IA/sixthsense-main/functions")
+
 client_secret<-'client_secret_.json'
 service_key<-"serviceKey.json"
 
