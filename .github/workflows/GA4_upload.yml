@@ -24,6 +24,8 @@ jobs:
         run: Rscript -e 'source("GA4_traffic.R")'
       - name: gs_upload
         run: Rscript -e 'source("gs_upload.R")'
+      - name: setp1-GA4_overalltraffic
+        run: Rscript -e 'source("setp1-GA4_overalltraffic.R")'
 
         
 
