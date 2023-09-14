@@ -16,7 +16,7 @@ ga4_propertyId<-271808317
 
 source("req_library.R")
 source("gs_upload.R")
-sheet_id <- "1coARvQYPD2XuUsl6KOhDFCQi1N28l3BVWHpgWxhd5U8"
+#sheet_id <- "1coARvQYPD2XuUsl6KOhDFCQi1N28l3BVWHpgWxhd5U8"
 
 req_library()
 
@@ -32,22 +32,20 @@ req_library()
 #Ga4 traffic data
 
 source("GA4_traffic.R")
-ga_traffic<-data.frame()
-for (i in 1:nrow(dates)) {
-  startDate <- dates$start_date[i]
-  endDate <- dates$end_date[i]
-  
-  ga_result <- GA_traffic(ga4_propertyId, startDate, endDate)
-  ga_traffic <- bind_rows(ga_traffic, ga_result)
-  
-}
+ga_result <- GA_traffic(ga4_propertyId, startDate, endDate)
+#ga_traffic <- bind_rows(ga_traffic, ga_result)
+
+
+ga_csv<-read.cvs("zodiac_sixth_sense - ga_traffic.csv")
+
+final_ga_data<-rbind(ga_csv,ga_result)
+write.csv(final_ga_data,"zodiac_sixth_sense - ga_traffic.csv",row.names = FALSE)
 
 
 
 
-
-Sheet_Name <- "ga_traffic"
-gs_upload(email_id, sheet_id, Sheet_Name, ga_traffic)
+#Sheet_Name <- "ga_traffic"
+#gs_upload(email_id, sheet_id, Sheet_Name, ga_traffic)
 
 
 
