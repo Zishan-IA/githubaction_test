@@ -1,4 +1,4 @@
-setwd("githubaction_test")
+setwd("https://github.com/Zishan-IA/githubaction_test/")
 client_secret<-'client_secret_.json'
 service_key<-"serviceKey.json"
 
