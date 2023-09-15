@@ -34,7 +34,8 @@ req_library()
 source("GA4_traffic.R")
 ga_result <- GA_traffic(ga4_propertyId, startDate, endDate)
 #ga_traffic <- bind_rows(ga_traffic, ga_result)
-
+install.packages('readr')
+library(readr)
 
 ga_csv<-read.cvs("zodiac_sixth_sense - ga_traffic.csv")
 
