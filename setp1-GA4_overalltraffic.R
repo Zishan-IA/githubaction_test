@@ -40,7 +40,10 @@ library(readr)
 ga_csv<-read.csv("zodiac_sixth_sense - ga_traffic.csv")
 
 final_ga_data<-rbind(ga_csv,ga_result)
-write.csv(final_ga_data,"zodiac_sixth_sense - ga_traffic.csv",row.names = FALSE)
+#write.csv(final_ga_data,"zodiac_sixth_sense - ga_traffic.csv",row.names = FALSE)
+
+final_ga_data %>%
+  write_rds("final_ga_data.rds")
 
 
 
