@@ -1,4 +1,4 @@
-setwd("main")
+
 client_secret<-'client_secret_.json'
 service_key<-"serviceKey.json"
 
@@ -16,7 +16,7 @@ ga4_propertyId<-271808317
 
 source("req_library.R")
 source("gs_upload.R")
-#sheet_id <- "1coARvQYPD2XuUsl6KOhDFCQi1N28l3BVWHpgWxhd5U8"
+sheet_id <- "1coARvQYPD2XuUsl6KOhDFCQi1N28l3BVWHpgWxhd5U8"
 
 req_library()
 
@@ -34,27 +34,15 @@ req_library()
 source("GA4_traffic.R")
 ga_result <- GA_traffic(ga4_propertyId, startDate, endDate)
 #ga_traffic <- bind_rows(ga_traffic, ga_result)
-install.packages('readr')
-library(readr)
+#install.packages('readr')
+#library(readr)
 
-
-# Read the existing ga_csv file from the Git repository
-ga_csv_path <- "zodiac_sixth_sense - ga_traffic.csv"
-ga_csv<-read.csv(ga_csv_path)
-
-final_ga_data<-rbind(ga_csv,ga_result)
-
-# Append ga_result to ga_csv
-final_ga_data <- rbind(ga_csv, ga_result)
-
-# Write the updated ga_csv back to the Git repository
-write.csv(final_ga_data, ga_csv_path, row.names = FALSE)
 
 
 #final_ga_data %>%write_rds("final_ga_data.rds")
 
-#Sheet_Name <- "ga_traffic"
-#gs_upload(email_id, sheet_id, Sheet_Name, ga_traffic)
+Sheet_Name <- "ga_traffic"
+gs_upload(email_id, sheet_id, Sheet_Name, ga_result)
 
 
 
