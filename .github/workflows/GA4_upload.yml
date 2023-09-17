@@ -17,7 +17,7 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }} # Use the secret name that holds your credentials JSON
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }} #Use the secret name that holds your credentials JSON
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
