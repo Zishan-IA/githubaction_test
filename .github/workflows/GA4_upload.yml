@@ -1,41 +1,49 @@
+name: Upload Data to Google Sheet
+
 on:
   push:
-    branches: main
+    branches:
+      - main
 
 jobs:
-  import-data:
-    runs-on: ubuntu-latest  #OS
+  data-upload:
+    runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Authenticate with Google
+        id: auth
+        uses: google-github-actions/auth@v1
+        with:
+          #workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'bigquery@gsc-api-370206.iam.gserviceaccount.com'
+
+      - name: Get Google Secret Manager Secrets
+        id: secrets
+        uses: google-github-actions/get-secretmanager-secrets@v1
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install packages
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::tidyverse 
-            any::googlesheets4
-      - name: Check out repository
-        uses: actions/checkout@v3
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages("tidyverse")'
+          Rscript -e 'install.packages("googlesheets4")'
 
-      - name: readpackages
-        run: Rscript -e 'source("req_library.R")'
-      - name: GA4trafficfunction
-        run: Rscript -e 'source("GA4_traffic.R")'
-      - name: gs_upload
-        run: Rscript -e 'source("gs_upload.R")'
-      - name: setp1-GA4_overalltraffic
-        run: Rscript -e 'source("setp1-GA4_overalltraffic.R")'
+      - name: Run R Script to Upload Data
+        run: |
+          Rscript -e 'source("req_library.R")'
+          Rscript -e 'source("GA4_traffic.R")'
+          Rscript -e 'source("gs_upload.R")'
+          Rscript -e 'source("setp1-GA4_overalltraffic.R")'
 
-
-
-
-
-
-      - name: Commit results
+      - name: Commit and Push Changes
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          git commit -m 'Data updated' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+          git add .
+          git commit -m 'Data updated'
+          git push origin main
