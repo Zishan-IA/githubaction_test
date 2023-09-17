@@ -41,6 +41,12 @@ ga_result <- GA_traffic(ga4_propertyId, startDate, endDate)
 
 #final_ga_data %>%write_rds("final_ga_data.rds")
 
+library(googledrive)
+# Either specify the user:
+drive_auth(email = "zishan.sayyed@interactiveavenues.com")
+# Or, if you only use one Google identity, you can be more vague:
+drive_auth(email = TRUE)
+
 Sheet_Name <- "ga_traffic"
 gs_upload(email_id, sheet_id, Sheet_Name, ga_result)
 
