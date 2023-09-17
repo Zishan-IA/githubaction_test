@@ -17,12 +17,7 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v1
         with:
-          #workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'bigquery@gsc-api-370206.iam.gserviceaccount.com'
-
-      - name: Get Google Secret Manager Secrets
-        id: secrets
-        uses: google-github-actions/get-secretmanager-secrets@v1
+          credentials_json: ${{ secrets.clien_secret_.json }} # Use the secret name that holds your credentials JSON
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
