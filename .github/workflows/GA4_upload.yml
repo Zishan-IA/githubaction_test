@@ -27,13 +27,18 @@ jobs:
           Rscript -e 'install.packages("tidyverse")'
           Rscript -e 'install.packages("googlesheets4")'
 
-      - name: Run R Script to Upload Data
-        run: |
-          Rscript -e 'source("req_library.R")'
-          Rscript -e 'source("GA4_traffic.R")'
-          Rscript -e 'source("gs_upload.R")'
-          Rscript -e 'source("setp1-GA4_overalltraffic.R")'
-
+      - name: readpackages
+        run: Rscript -e 'source("req_library.R")'
+        
+      - name: GA4trafficfunction
+        run: Rscript -e 'source("GA4_traffic.R")'
+        
+      - name: gs_upload
+        run: Rscript -e 'source("gs_upload.R")'
+        
+      - name: setp1-GA4_overalltraffic
+        run: Rscript -e 'source("setp1-GA4_overalltraffic.R")'
+        
       - name: Commit and Push Changes
         run: |
           git config --local user.email "actions@github.com"
