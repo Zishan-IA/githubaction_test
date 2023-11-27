@@ -1,3 +1,4 @@
+install.packages(c('googleAuthR', 'googleCloudStorageR', 'httr', 'usethis', 'pkgdown', 'rcmdcheck', 'rversions', 'urlchecker'))
 
 client_secret<-'client_secret_.json'
 service_key<-"serviceKey.json"
