@@ -47,8 +47,8 @@ ga_result <- GA_traffic(ga4_propertyId, startDate, endDate)
 #gs4_auth(email = "zishan.sayyed@interactiveavenues.com")
 #drive_auth(email = "zishan.sayyed@interactiveavenues.com")
 
-Sheet_Name <- "ga_traffic"
-gs_upload(email_id, sheet_id, Sheet_Name, ga_result)
+#Sheet_Name <- "ga_traffic"
+#gs_upload(email_id, sheet_id, Sheet_Name, ga_result)
 
 
 
